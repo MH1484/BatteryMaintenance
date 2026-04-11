@@ -2,6 +2,10 @@
 
 This repository contains different scripts to charge batteries and create statistics
 
+## Akkupflege.docx
+
+This document guides a user to maintain batteries.
+
 ## battery_charging.py
 
 To use this script, open it and adjust the IP adress of the used Shelly Plug S device.
