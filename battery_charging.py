@@ -44,16 +44,18 @@ def update(frame):
     power_values.append(power)
     print("Power at " + str(now) + ": " + str(power) + "W")
 
-    # CSV schreiben
     csv_writer.writerow([now, str(power).replace(".", ",")])
     csv_file.flush()
 
+    start = timestamps[0]
+    x_seconds = [t - start for t in timestamps]
+
     plt.cla()
-    plt.plot(timestamps, power_values, label="Leistung (W)")
-    plt.xlabel("Zeit (s)")
-    plt.ylabel("Watt")
-    plt.title("Shelly 2PM Live-Verbrauch")
-    plt.gca().xaxis.set_major_formatter(plt.NullFormatter())
+    plt.gcf().canvas.manager.set_window_title("Live-Verbrauch")
+    plt.plot(x_seconds, power_values, label="Leistung (W)")
+    plt.xlabel("Zeit seit Start (s)")
+    plt.ylabel("Leistung (W)")
+    plt.title("Live-Verbrauch")
     plt.legend()
     plt.tight_layout()
 

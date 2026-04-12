@@ -15,6 +15,12 @@ def is_float_with_comma(s):
     except ValueError:
         return False
 
+def PrintLine(data):
+    width = [42, 11, 11, 11, 5]
+    for d, w in zip(data, width):
+        print(f"{d:<{w}}", end="")
+    print("")
+
 def read_file(csv_path):
     first   = None
     latest  = None
@@ -35,14 +41,11 @@ def read_file(csv_path):
                     highest = power
 
     duration = datetime.strptime(latest, "%H:%M:%S") - datetime.strptime(first, "%H:%M:%S")
-    print(str(csv_path) + "   " + str(first) + "   " + str(latest) + "   " + str(duration) + "   " + str(highest))
+    PrintLine([str(csv_path), str(first), str(latest), str(duration), str(highest) + "W"])
 
 def main():
-    print("File                        First      Latest     Duration  MaxPower")
-    #      .\G-174870\2026-04-11.csv   11:43:37   12:23:27   0:39:50   2.1W
-
-    for csv_file in find_csv_files("."):
-        read_file(csv_file)
+    PrintLine(["File", "First", "Latest", "Duration", "MaxPower"])
+    for csv_file in find_csv_files("."): read_file(csv_file)
 
 if __name__ == "__main__":
     main()
