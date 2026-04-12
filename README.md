@@ -2,7 +2,7 @@
 
 This repository contains different scripts to charge batteries and create statistics
 
-## Akkupflege.docx
+## user_manual.md
 
 This document guides a user to maintain batteries.
 
