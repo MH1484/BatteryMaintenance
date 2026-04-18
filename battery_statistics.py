@@ -3,10 +3,14 @@ import csv
 from datetime import datetime
 
 def find_csv_files(start_dir="."):
-    for root, dirs, files in os.walk(start_dir):
-        for file in files:
-            if file.lower().endswith(".csv"):
-                yield os.path.join(root, file)
+    csv_files = []
+
+    for dirpath, _, filenames in os.walk(start_dir):
+        for f in filenames:
+            if f.lower().endswith(".csv"):
+                csv_files.append(os.path.join(dirpath, f))
+
+    return sorted(csv_files)
 
 def is_float_with_comma(s):
     try:
